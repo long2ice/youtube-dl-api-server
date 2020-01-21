@@ -8,3 +8,4 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 RUN pip3 install poetry
 RUN poetry install
 COPY . /usr/share/nginx/youtube-dl-api-server
+CMD ['python','main.py']
