@@ -6,11 +6,11 @@ authors = ["long2ice <long2ice@prismslight.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-fastapi = {version = "^0.47.1", extras = ["=all"]}
-uvicorn = "^0.11.2"
-youtube_dl = "^2020.1.15"
-pysocks = "^1.7.1"
-python-multipart = "^0.0.5"
+fastapi = {version = "*", extras = ["=all"]}
+uvicorn = "*"
+youtube_dl = "*"
+pysocks = "*"
+python-multipart = "*"
 
 [tool.poetry.dev-dependencies]
 
