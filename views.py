@@ -3,7 +3,6 @@ import logging
 import youtube_dl
 from fastapi import FastAPI
 from starlette.requests import Request
-from youtube_dl import YoutubeDL
 from youtube_dl.version import __version__ as youtube_dl_version
 
 import settings
@@ -15,17 +14,17 @@ api = FastAPI(
 )
 
 
-@api.get('/info')
+@api.post('/info')
 async def info(request: Request):
-    url = request.query_params.get('url')
+    form = await request.form()
+    url = form.get('url')
     ydl_params = {
         'format': 'best',
         'cachedir': False,
         'logger': logging.getLogger(__name__),
-        'proxy': settings.PROXY
     }
-    ydl = YoutubeDL(ydl_params)
-    result = ydl.extract_info(url, download=False)
+    with youtube_dl.YoutubeDL(ydl_params) as ydl:
+        result = ydl.extract_info(url, download=False)
     return {
         'url': url,
         'info': result
