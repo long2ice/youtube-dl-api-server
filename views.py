@@ -13,10 +13,8 @@ api = FastAPI(
 )
 
 
-@api.post('/info')
-async def info(request: Request):
-    form = await request.form()
-    url = form.get('url')
+@api.get('/info')
+async def info(request: Request, url: str):
     ydl_params = {
         'format': 'best',
         'cachedir': False,
