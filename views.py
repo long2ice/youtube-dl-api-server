@@ -9,7 +9,6 @@ import settings
 
 api = FastAPI(
     title='API接口文档',
-    openapi_prefix='/api',
     debug=settings.DEBUG
 )
 
@@ -22,6 +21,7 @@ async def info(request: Request):
         'format': 'best',
         'cachedir': False,
         'logger': logging.getLogger(__name__),
+        'proxy': settings.PROXY
     }
     with youtube_dl.YoutubeDL(ydl_params) as ydl:
         result = ydl.extract_info(url, download=False)

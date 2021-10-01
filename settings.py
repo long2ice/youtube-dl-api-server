@@ -1,2 +1,3 @@
 DEBUG = True
 VERSION = '0.0.1'
+PROXY = 'http://192.168.123.204:7890'
